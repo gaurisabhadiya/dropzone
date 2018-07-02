@@ -1,0 +1,53 @@
+<head>
+			<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+			<script type="text/javascript">
+			
+			</script>
+		</head>
+<link rel="stylesheet" href="dropzone1/dropzone.css">
+<script type="text/javascript" src="dropzone1/dropzone.js"></script>
+<script type="text/javascript">
+	(function(){
+
+  var count = 1;
+  var $form = $('form');
+  initDropzone( $('#person_1') );
+
+  function addPerson() {
+    count++;
+    var $personDiv = $('<div class="person" id="person_'+count+'">...</div>').appendTo($form);
+    initDropzone( $personDiv, count ); 
+  }
+
+  function initDropzone( $el, count ) {
+    $el.find('.avatar').dropzone({
+      autoProcessQueue: false,
+      uploadMultiple: false,
+      parallelUploads: 100,
+      maxFiles: 1,
+      url: '/' // dropzone requires a url param
+    });
+  }
+
+
+  $('#add_person').on('click', addPerson);
+
+})();
+</script>
+<form>
+
+  <div class="person" id="person_1">
+    <div class="avatar"></div>
+    <input type="text" name="name_1" />
+  </div>
+
+  <!-- then these are added via js -->
+  <div class="person" id="person_2">
+    <div class="avatar"></div>
+    <input type="text" name="name_2" />
+  </div>
+  <div class="person" id="person_3">...</div>
+  <div class="person" id="person_4">...</div>
+  <!-- etc -->
+
+</form>
